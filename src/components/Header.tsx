@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +39,7 @@ const Header: React.FC = () => {
             />
           </div>
 
-          {/* Desktop Navigation (always visible) */}
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#home" className="py-2 text-white hover:text-purple-200">Home</a>
             <a href="#services" className="py-2 text-white hover:text-purple-200">Services</a>
@@ -48,11 +49,42 @@ const Header: React.FC = () => {
             <a href="#blog" className="py-2 text-white hover:text-purple-200">Insights</a>
             <a href="#contact" className="py-2 bg-white text-[#6610f2] px-5 rounded-full hover:bg-purple-100 transition-colors text-center md:ml-4">Contact Us</a>
           </nav>
+
+          {/* Hamburger Button - Mobile Only */}
+          <button
+            className="md:hidden flex flex-col items-center justify-center w-10 h-10 rounded focus:outline-none focus:ring-2 focus:ring-white"
+            aria-label="Open menu"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <span className="block w-6 h-0.5 bg-white mb-1.5 transition-all duration-300" style={{ transform: mobileMenuOpen ? 'rotate(45deg) translateY(7px)' : 'none' }}></span>
+            <span className={`block w-6 h-0.5 bg-white mb-1.5 transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className="block w-6 h-0.5 bg-white transition-all duration-300" style={{ transform: mobileMenuOpen ? 'rotate(-45deg) translateY(-7px)' : 'none' }}></span>
+          </button>
         </div>
       </div>
 
-      {/* Hamburger Navigation (always for all screens) */}
-      {/* No hamburger or mobile menu on desktop */}
+      {/* Mobile Navigation Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-[#6610f2]/95 flex flex-col items-center justify-center md:hidden animate-fade-in">
+          <button
+            className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center text-white text-3xl focus:outline-none"
+            aria-label="Close menu"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <span className="block w-6 h-0.5 bg-white mb-1.5 rotate-45 translate-y-2"></span>
+            <span className="block w-6 h-0.5 bg-white -rotate-45 -translate-y-2"></span>
+          </button>
+          <nav className="flex flex-col space-y-8 text-center">
+            <a href="#home" className="text-white text-2xl font-semibold hover:text-purple-200" onClick={() => setMobileMenuOpen(false)}>Home</a>
+            <a href="#services" className="text-white text-2xl font-semibold hover:text-purple-200" onClick={() => setMobileMenuOpen(false)}>Services</a>
+            <a href="#about" className="text-white text-2xl font-semibold hover:text-purple-200" onClick={() => setMobileMenuOpen(false)}>About</a>
+            <a href="#testimonials" className="text-white text-2xl font-semibold hover:text-purple-200" onClick={() => setMobileMenuOpen(false)}>Testimonials</a>
+            <a href="#team" className="text-white text-2xl font-semibold hover:text-purple-200" onClick={() => setMobileMenuOpen(false)}>Team</a>
+            <a href="#blog" className="text-white text-2xl font-semibold hover:text-purple-200" onClick={() => setMobileMenuOpen(false)}>Insights</a>
+            <a href="#contact" className="inline-block bg-white text-[#6610f2] px-8 py-3 rounded-full font-semibold text-xl shadow-md hover:bg-purple-100 transition-colors mt-4" onClick={() => setMobileMenuOpen(false)}>Contact Us</a>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };

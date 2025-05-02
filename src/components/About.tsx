@@ -33,7 +33,7 @@ const About: React.FC = () => {
     <section id="about" className="py-20">
       <div className="container mx-auto px-4 md:px-6" style={{ maxWidth: '80vw' }}>
         <div className="flex flex-col lg:flex-row items-center gap-12">
-          <div className="lg:w-1/2 order-2 lg:order-1">
+          <div className="w-full lg:w-1/2 order-2 lg:order-1 mb-10 lg:mb-0">
             <div className="relative">
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-blue-100 rounded-lg"></div>
               <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-purple-100 rounded-lg"></div>
@@ -64,7 +64,7 @@ const About: React.FC = () => {
             </div>
           </div>
           
-          <div className="lg:w-1/2 order-1 lg:order-2">
+          <div className="w-full lg:w-1/2 order-1 lg:order-2">
             <div className="mb-6 inline-block px-4 py-1.5 text-sm font-medium text-blue-600 bg-blue-100 rounded-full">
               About QualMinds
             </div>
