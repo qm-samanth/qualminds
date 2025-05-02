@@ -1,0 +1,144 @@
+/* Modernized Animations with CSS Variables and Accessibility */
+
+:root {
+  --animation-duration: 0.7s;
+  --animation-ease: cubic-bezier(0.6, 0.05, 0.01, 0.99);
+  --reveal-distance: 40px;
+  --animation-blur: 12px;
+  --animation-bg: rgba(102,16,242,0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    filter: none !important;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(var(--reveal-distance)) scale(0.98);
+    filter: blur(var(--animation-blur));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(calc(-1 * var(--reveal-distance))) scale(0.98);
+    filter: blur(var(--animation-blur));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(var(--reveal-distance)) scale(0.98);
+    filter: blur(var(--animation-blur));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+
+/* Blob animation (modernized) */
+@keyframes blob {
+  0% {
+    transform: scale(1) translate(0px, 0px) rotate(0deg);
+    filter: blur(0);
+  }
+  25% {
+    transform: scale(1.08) translate(18px, -18px) rotate(3deg);
+    filter: blur(2px);
+  }
+  50% {
+    transform: scale(0.95) translate(-18px, 18px) rotate(-2deg);
+    filter: blur(1px);
+  }
+  75% {
+    transform: scale(1.04) translate(10px, -10px) rotate(2deg);
+    filter: blur(0.5px);
+  }
+  100% {
+    transform: scale(1) translate(0px, 0px) rotate(0deg);
+    filter: blur(0);
+  }
+}
+
+.animate-blob {
+  animation: blob 6s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+  will-change: transform, filter;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+
+/* Scroll reveal animations (modernized) */
+.reveal {
+  position: relative;
+  opacity: 0;
+  filter: blur(var(--animation-blur));
+  background: var(--animation-bg);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 32px 0 rgba(102,16,242,0.07);
+  transition:
+    opacity var(--animation-duration) var(--animation-ease),
+    transform var(--animation-duration) var(--animation-ease),
+    filter var(--animation-duration) var(--animation-ease),
+    background 0.4s;
+  will-change: opacity, transform, filter, background;
+}
+
+.reveal.active {
+  opacity: 1;
+  filter: blur(0);
+  background: transparent;
+}
+
+.reveal.fade-bottom {
+  transform: translateY(var(--reveal-distance));
+}
+
+.reveal.fade-bottom.active {
+  transform: translateY(0);
+}
+
+.reveal.fade-left {
+  transform: translateX(calc(-1 * var(--reveal-distance)));
+}
+
+.reveal.fade-left.active {
+  transform: translateX(0);
+}
+
+.reveal.fade-right {
+  transform: translateX(var(--reveal-distance));
+}
+
+.reveal.fade-right.active {
+  transform: translateX(0);
+}
