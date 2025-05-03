@@ -20,7 +20,7 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await fetch("https://script.google.com/macros/s/AKfycbzKtLiIQG7hXMSTeCI4TPdtSLz4m4ze27zpgCn2K5BA7BCV5VsMtSmZq8qqAZxtEFqJvw/exec", {
+      await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

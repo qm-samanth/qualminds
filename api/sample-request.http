@@ -1,0 +1,12 @@
+### Sample request to /api/contact
+POST http://localhost:24714/api/contact
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "phone": "1234567890",
+  "company": "Acme Inc.",
+  "service": "Custom Software",
+  "message": "I am interested in your services."
+}
