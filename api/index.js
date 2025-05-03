@@ -34,6 +34,10 @@ app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {explorer: tr
 // Redirect /api/docs/ to /api/docs for easier access (trailing slash issue on some hosts)
 app.get('/api/docs/', (req, res) => res.redirect('/api/docs'));
 
+// Redirect root and /api to Swagger UI
+app.get('/', (req, res) => res.redirect('/api/docs'));
+app.get('/api', (req, res) => res.redirect('/api/docs'));
+
 // Update these values with your actual MySQL credentials
 const db = mysql.createConnection({
   host: 'YOUR_MYSQL_HOST',
