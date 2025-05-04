@@ -39,10 +39,39 @@ const Header: React.FC = () => {
             />
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation with Services Submenu */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#home" className="py-2 text-white hover:text-purple-200">Home</a>
-            <a href="#services" className="py-2 text-white hover:text-purple-200">Services</a>
+            <div
+              className="relative group"
+              tabIndex={0}
+              onMouseEnter={e => {
+                clearTimeout((e.currentTarget as any)._submenuTimeout);
+                e.currentTarget.classList.add('submenu-open');
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as any)._submenuTimeout = setTimeout(() => {
+                  e.currentTarget.classList.remove('submenu-open');
+                }, 180);
+              }}
+              onFocus={e => {
+                clearTimeout((e.currentTarget as any)._submenuTimeout);
+                e.currentTarget.classList.add('submenu-open');
+              }}
+              onBlur={e => {
+                (e.currentTarget as any)._submenuTimeout = setTimeout(() => {
+                  e.currentTarget.classList.remove('submenu-open');
+                }, 180);
+              }}
+            >
+              <a href="#services" className="py-2 text-white hover:text-purple-200 flex items-center group" tabIndex={-1}>Services
+                <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </a>
+              <div className="absolute left-0 mt-2 w-64 bg-white rounded-xl shadow-xl py-4 opacity-0 translate-y-2 pointer-events-none transition-all duration-200 z-50 group-[.submenu-open]:opacity-100 group-[.submenu-open]:translate-y-0 group-[.submenu-open]:pointer-events-auto" style={{ minWidth: '220px' }}>
+                <a href="#services" className="block px-6 py-2 text-[#6610f2] hover:bg-purple-50 hover:text-[#843dff] transition-colors">All Services</a>
+                <a href="/digital-product-engineering" className="block px-6 py-2 text-[#6610f2] hover:bg-purple-50 hover:text-[#843dff] transition-colors">Digital Product Engineering</a>
+              </div>
+            </div>
             <a href="#about" className="py-2 text-white hover:text-purple-200">About</a>
             <a href="#testimonials" className="py-2 text-white hover:text-purple-200">Testimonials</a>
             <a href="#team" className="py-2 text-white hover:text-purple-200">Team</a>
@@ -76,7 +105,15 @@ const Header: React.FC = () => {
           </button>
           <nav className="flex flex-col space-y-8 text-center">
             <a href="#home" className="text-white text-2xl font-semibold hover:text-purple-200" onClick={() => setMobileMenuOpen(false)}>Home</a>
-            <a href="#services" className="text-white text-2xl font-semibold hover:text-purple-200" onClick={() => setMobileMenuOpen(false)}>Services</a>
+            <div className="relative group">
+              <a href="#services" className="text-white text-2xl font-semibold hover:text-purple-200 flex items-center group" onClick={e => e.preventDefault()}>Services
+                <svg className="ml-1 w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </a>
+              <div className="mt-2 w-64 bg-white rounded-xl shadow-xl py-4 opacity-100 transition-all duration-200 z-50">
+                <a href="#services" className="block px-6 py-2 text-[#6610f2] hover:bg-purple-50 hover:text-[#843dff] transition-colors" onClick={() => setMobileMenuOpen(false)}>All Services</a>
+                <a href="/digital-product-engineering" className="block px-6 py-2 text-[#6610f2] hover:bg-purple-50 hover:text-[#843dff] transition-colors" onClick={() => setMobileMenuOpen(false)}>Digital Product Engineering</a>
+              </div>
+            </div>
             <a href="#about" className="text-white text-2xl font-semibold hover:text-purple-200" onClick={() => setMobileMenuOpen(false)}>About</a>
             <a href="#testimonials" className="text-white text-2xl font-semibold hover:text-purple-200" onClick={() => setMobileMenuOpen(false)}>Testimonials</a>
             <a href="#team" className="text-white text-2xl font-semibold hover:text-purple-200" onClick={() => setMobileMenuOpen(false)}>Team</a>

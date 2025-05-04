@@ -35,6 +35,16 @@ const teamMembers: TeamMember[] = [
     }
   },
   {
+    name: 'Avishek Kumar',
+    role: 'Director of Engineering',
+    image: 'https://qualminds.com/images/whowearesliders/employee-images/Avishek.png',
+    bio: 'Leads engineering teams to deliver high-quality software.',
+    social: {
+      linkedin: 'https://www.linkedin.com/in/avishek-kumar/',
+      email: 'avishek@qualminds.com'
+    }
+  },
+  {
     name: 'Leela Narasimha',
     role: 'Technical Architect (UI)',
     image: 'https://qualminds.com/images/whowearesliders/employee-images/Leela.png',
@@ -52,16 +62,6 @@ const teamMembers: TeamMember[] = [
     social: {
       linkedin: 'https://www.linkedin.com/in/koteswara-gupta/',
       email: 'koteswara@qualminds.com'
-    }
-  },
-  {
-    name: 'Avishek Kumar',
-    role: 'Director of Engineering',
-    image: 'https://qualminds.com/images/whowearesliders/employee-images/Avishek.png',
-    bio: 'Leads engineering teams to deliver high-quality software.',
-    social: {
-      linkedin: 'https://www.linkedin.com/in/avishek-kumar/',
-      email: 'avishek@qualminds.com'
     }
   },
   {
